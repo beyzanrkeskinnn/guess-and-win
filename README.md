@@ -64,89 +64,66 @@ Define the guess range, entry fee, and reward logic.
 ## Programing Language
 Rust & Web3
 
- ## Setup Enviroment
 
- Installation Guide
-Follow these steps to set up the project locally and start development:
 
-Prerequisites
-Rust (with rustup)
+## Setup Environment
 
-Soroban CLI
+### 🛠️ Installation Guide
 
-Node.js and npm
+Follow these steps to set up the project locally and start development.
 
-Setup Steps
-Clone the repository
+---
 
-bash
-Kopyala
-Düzenle
-git clone https://github.com/yourusername/yourproject.git
-cd yourproject
-Install Rust
+### ✅ Prerequisites
 
-If you don’t have Rust installed, run:
+Make sure you have the following tools installed:
 
-bash
-Kopyala
-Düzenle
+- [Rust](https://www.rust-lang.org/tools/install) (with `rustup`)
+- [Soroban CLI](https://soroban.stellar.org/docs/getting-started/soroban-cli)
+- [Node.js and npm](https://nodejs.org/)
+
+---
+
+### ⚙️ Setup Steps
+
+1️⃣ **Clone the Repository:**
+
+```bash
+git clone https://github.com/beyzanrkeskinnn/guess-and-win.git
+cd guess-and-win
+```
+2️⃣ **Install Rust (if not installed):**
+```bash
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
-Verify Rust installation:
-
-bash
-Kopyala
-Düzenle
-rustc --version
-Install Soroban CLI
-
-Install Soroban CLI via Cargo:
-
-bash
-Kopyala
-Düzenle
+```
+3️⃣ **Install Soroban CLI:**
+```bash
 cargo install --locked soroban-cli
-Check Soroban CLI:
-
-bash
-Kopyala
-Düzenle
-soroban --version
-Install frontend dependencies
-
-Navigate to the frontend folder (if applicable):
-
-bash
-Kopyala
-Düzenle
+```
+4️⃣ **Install Frontend Dependencies:**
+```bash
 cd frontend
 npm install
-Run the project locally
+```
+### ▶️ Run the project locally
 
-Start local Soroban test network (optional):
-
-bash
-Kopyala
-Düzenle
+5️⃣ **Start Soroban Test Network (optional for local testing)**
+```bash
 soroban network start
-Build the smart contract:
+```
 
-bash
-Kopyala
-Düzenle
+ 6️⃣ **Build the smart contract:**
+ ```bash
 soroban contract build
-Deploy the contract to the test network (replace <network> with your network):
-
-bash
-Kopyala
-Düzenle
+```
+7️⃣ **Deploy the contract to the test network (replace <network> with your network):**
+ ```bash
 soroban contract deploy --network <network> --wasm target/wasm32-unknown-unknown/release/contract.wasm
-Start the frontend development server:
-
-bash
-Kopyala
-Düzenle
+ ```
+8️⃣Start the frontend development server:
+ ```bash
 npm start
+```
 ---
 
 ## 🚀 Features
@@ -179,27 +156,7 @@ guess_game/
 ├── Cargo.toml # Dependencies and metadata
 ├── README.md
 ```
-## ⚙️ How to Run
 
-1️⃣ **Install Dependencies:**
-
-- [Rust](https://www.rust-lang.org/tools/install)
-- [Soroban CLI](https://soroban.stellar.org/docs/getting-started/soroban-cli)
-
-```bash
-cargo install --locked soroban-cli
-```
-2️⃣ **Build the Contract:**
-```bash
-cargo build --target wasm32-unknown-unknown --release
-```
-3️⃣ **Deploy & Test Locally:**
-```bash
-soroban contract deploy \
-  --wasm target/wasm32-unknown-unknown/release/guess_game.wasm \
-  --source your-key \
-  --network testnet
-```
 
 ## 📌 Gameplay Logic
 - Player sends a guess (e.g., number between 1-10)
