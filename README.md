@@ -61,11 +61,6 @@ Define the guess range, entry fee, and reward logic.
 
 - Launch the front-end on decentralized hosting platforms (e.g., IPFS or Vercel).
 
-## Programing Language
-Rust & Web3
-
-
-
 ## Setup Environment
 
 ### 🛠️ Installation Guide
