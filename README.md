@@ -1,4 +1,4 @@
-# 🎯 Guess and Win 
+# 🎯 Quiz and Win 
  
 ## About Me
 
@@ -6,55 +6,89 @@ I'm Beyzanur Keskin, a 2020 BÖTE graduate from Ondokuz Mayıs University. I sta
 
 ## Description
 
-Quess And Win is a decentralized prediction game built on the Scroll blockchain using smart contracts. Players guess a number within a fixed range. If the guess matches the winning number, they receive token rewards. All game logic, from number generation to reward distribution, runs on-chain, ensuring fairness and transparency. The smart contract handles player inputs, checks correctness, and sends rewards automatically. Easy to use and fully decentralized, Quess And Win offers a fun, trustless way to test your luck and earn tokens.
+Quiz and Win is a decentralized quiz game built on the Scroll blockchain. Users answer a series of multiple-choice Web3-related questions. The smart contract evaluates each answer, tracks the number of correct responses, and rewards users with tokens based on their score. All quiz logic and reward mechanisms run on-chain, ensuring full transparency, fairness, and trustless execution. Whether you're new to blockchain or a seasoned developer, Quiz and Win offers a fun, educational way to earn while you learn.
 
 ## Vision
-Quess And Win aims to make blockchain technology fun, simple, and accessible to everyone. By combining an easy-to-understand game with transparent, on-chain logic, it introduces users to the power of decentralization in an engaging way. The project removes the need for trust, letting players see and verify every step on the blockchain. Through token-based rewards, it gives real value to participation. Our vision is to inspire mass adoption of Web3 by turning everyday gaming into a gateway for learning, earning, and exploring the benefits of decentralized technologies in a fair and open system.
+Our mission is to make learning Web3 interactive, rewarding, and fully decentralized. Quiz and Win transforms traditional quizzes into an on-chain experience where every interaction is provable and every correct answer has real value. By gamifying education with blockchain technology, we aim to inspire mass adoption, foster curiosity, and reward knowledge. The future of learning is decentralized — and it starts with answering a few questions.
 
-## Project Roadmap/Future planes
+## 🛠️ Project Roadmap / Future Plans
 
-### Smart Contract Design & Setup (Soroban on Scroll)
-- Define Variables:
-  - `winning_number` (uint)  
-  - `guess_range` (uint)  
-  - `entry_fee` (token amount)  
-  - `reward_pool` (token balance)  
-  - `player_guesses` (mapping: address → number)  
+### 🔧 Smart Contract Design
 
-- Set Basic Rules:
-Define the guess range, entry fee, and reward logic.
+#### 📦 Data Structures
+- **`questions[]`**: List of all quiz questions (`QuizQuestion` struct)
+- **`reward_pool`**: Token balance reserved for rewarding correct answers
+- **(Planned)** `player_answers`: Mapping of player responses (`address → Vec<u32>`)
+- **(Planned)** `score_board`: Mapping of number of correct answers per player (`address → u32`)
+- **(Planned)** `entry_fee`: Fixed token amount required to participate in the quiz
 
-### Core Smart Contract Functions
-- make_guess(uint guess): Accepts the guess and entry fee, stores the guess.
+---
 
-- check_result(address player): Compares the player’s guess with the winning number.
+### 🧠 Core Contract Functions
 
-- distribute_reward(address winner): Transfers tokens from the reward pool to the correct guesser.
+#### ✅ `add_question(admin, question, options, correct_index, reward)`
+- Admin-only function
+- Adds a new question to the quiz with its correct answer and reward amount
 
-- reset_game(): Admin function to set a new winning number and reset the game state.
+#### ✅ `answer_question(user, question_index, answer_index) -> bool`
+- Verifies the user's answer to a specific question
+- Transfers reward to the user if the answer is correct
+- Returns `false` for incorrect answers
 
-### Security & Fairness Logic
-- Use verifiable random number generation (e.g., hash-based RNG).
+---
 
-- Prevent multiple guesses from the same address in a single game round.
+### 🔄 Planned Functions
+
+#### 📝 `submit_answers(address, answers[])`
+- Allows users to submit all answers at once
+- Stores user responses in `player_answers`
+
+#### 📊 `evaluate_score(address)`
+- Compares user answers with correct answers
+- Updates the `score_board` accordingly
+
+#### 🎁 `distribute_rewards(address)`
+- Sends token rewards based on the number of correct answers
+- Rewards are distributed from the `reward_pool`
+
+#### 🧑‍💼 `reset_quiz()`
+- Resets the quiz for a new round
+- Clears previous user submissions and scores
+
+---
+
+### 🔐 Security & Fairness
+
+- ❌ Only one submission per user per game round (Planned)
+- 🔒 Questions remain immutable during an active quiz round (Planned)
+- ⚖️ Reward distribution is fully transparent and executed on-chain
+
+---
+
+🎯 The long-term goal is to expand `Quiz and Win` into a fully trustless, on-chain learning platform that rewards knowledge and drives Web3 adoption.
+
 
 ### Front-End Development
 - Build a clean and simple React-based UI to:
 
    - Connect wallets
 
-   - Make guesses
+   - Display quiz questions
 
-   - Display game rules, guess range, and rewards
+   - Submit answers
 
-   - Check results
+   - Show results and rewards
+
+   - View past scores
 
 - Integrate with the smart contract using Scroll-compatible SDKs.
 
 ### Testing
-- Unit test the smart contract logic on testnet.
+- Unit testing for all smart contract functions
 
-- Test front-end interactions and transaction flows.
+- End-to-end testing for UI/UX and blockchain interaction
+
+- Testnet deployment and debugging
 
 ### Deployment
 - Deploy the smart contract on the Scroll mainnet.
@@ -84,8 +118,8 @@ Make sure you have the following tools installed:
 1️⃣ **Clone the Repository:**
 
 ```bash
-git clone https://github.com/beyzanrkeskinnn/guess-and-win.git
-cd guess-and-win
+git clone https://github.com/beyzanrkeskinnn/quiz-and-win.git
+cd quiz-and-win-contract
 ```
 2️⃣ **Install Rust (if not installed):**
 ```bash
@@ -97,7 +131,7 @@ cargo install --locked soroban-cli
 ```
 4️⃣ **Install Frontend Dependencies:**
 ```bash
-cd frontend
+cd quiz-and-win-frontend
 npm install
 ```
 ### ▶️ Run the project locally
@@ -123,11 +157,17 @@ npm start
 
 ## 🚀 Features
 
-- 🔐 Smart contract-based prediction mechanism
-- 🎰 Fair and random guess evaluation
-- 💰 Token-based rewards and balance tracking
-- 👤 Admin functions for managing game parameters
-- 📊 Fully auditable on the Stellar blockchain
+- 🔐 📚 Web3-based multiple choice quiz
+
+- 🧠 On-chain answer validation
+
+- 🪙 Token rewards based on correct answers
+
+- 🔒 Immutable quiz logic for fairness
+
+- 👤 Admin dashboard for managing questions
+
+- 🔍 Transparent and verifiable gameplay on the blockchain
 
 ---
 
@@ -137,28 +177,34 @@ npm start
 - **Language**: Rust
 - **Smart Contracts**: Soroban SDK
 - **Tooling**: Cargo, Soroban CLI
+- **Frontend**: React + Web3
 
 ---
 
 ## 📁 Project Structure
 ```bash
-guess_game/
+quiz-and-win-contract/
 ├── src/
-│ ├── lib.rs # Entry point for the contract
-│ ├── admin.rs # Admin utilities and access control
-│ ├── balance.rs # Token and balance management
-│ └── contract.rs # Main game logic: guess, validate, reward
-├── Cargo.toml # Dependencies and metadata
+│ ├── lib.rs 
+│ ├── admin.rs 
+│ ├── balance.rs 
+│ ├── quiz.rs 
+│ ├── storage_types.rs 
+│ └── contract.rs 
+
+├── Cargo.toml 
 ├── README.md
 ```
 
 
 ## 📌 Gameplay Logic
-- Player sends a guess (e.g., number between 1-10)
+- Player connects wallet and pays entry fee
 
-- Contract generates a pseudo-random number
+- Questions are fetched from smart contract
 
-- If guess matches, reward is sent
+- Player submits answers via the UI
 
-- Otherwise, funds go to the pool
+- Contract evaluates responses on-chain
+
+- Player receives tokens based on correct answers
   
